@@ -8,8 +8,11 @@ import { Footer } from '@/components/footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Modern Company',
+  title: 'Intersphere Marketing',
   description: 'Professional services for modern businesses',
+  icons: {
+    icon: '/logo.jpeg',
+  },
 };
 
 export default function RootLayout({
