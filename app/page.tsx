@@ -56,19 +56,42 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-          <Marquee className="bg-black/50 backdrop-blur-sm rounded-xl border border-white/10" pauseOnHover speed={40}>
-            <div className="flex gap-12 px-4 py-2">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full">
+          <Marquee className="bg-black/50 backdrop-blur-sm py-6" pauseOnHover speed={50}>
+            <div className="flex gap-16 items-center px-4">
               {[
-                "Innovative Solutions",
-                "Modern Design",
-                "Cutting-edge Technology",
-                "Seamless Experience",
-                "Scalable Architecture",
-                "24/7 Support"
-              ].map((text, i) => (
-                <div key={i} className="text-white/70 text-sm font-medium px-4">
-                  {text}
+                {
+                  alt: "Microsoft",
+                  logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Microsoft_icon.svg/512px-Microsoft_icon.svg.png"
+                },
+                {
+                  alt: "NVIDIA",
+                  logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Nvidia_logo.svg/512px-Nvidia_logo.svg.png"
+                },
+                {
+                  alt: "Amazon",
+                  logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Amazon_icon.svg/512px-Amazon_icon.svg.png"
+                },
+                {
+                  alt: "Apple",
+                  logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/512px-Apple_logo_black.svg.png"
+                },
+                {
+                  alt: "Meta",
+                  logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/512px-Meta_Platforms_Inc._logo.svg.png"
+                },
+                {
+                  alt: "Netflix",
+                  logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/512px-Netflix_2015_logo.svg.png"
+                }
+              ].map((company, i) => (
+                <div key={i} className="relative w-24 h-12 flex items-center justify-center grayscale hover:grayscale-0 transition-all">
+                  <Image
+                    src={company.logo}
+                    alt={company.alt}
+                    fill
+                    className="object-contain brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
+                  />
                 </div>
               ))}
             </div>
