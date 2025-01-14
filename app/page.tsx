@@ -6,6 +6,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { ArrowRight, BarChart, Check, Cloud, Code2, Database, Layout, Mail, MapPin, Phone, Shield, Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { GooeyText } from "@/components/ui/gooey-text-morphing"
+import { Marquee } from "@/components/ui/marquee"
+import { HighlightGroup } from "@/components/ui/highlighter"
 
 export default function Home() {
   return (
@@ -28,9 +31,15 @@ export default function Home() {
             <div className="inline-block">
               <div className="relative">
                 <div className="absolute inset-0 blur-3xl bg-white/20 rounded-full transform -rotate-6" />
-                <h1 className="relative text-7xl md:text-9xl font-bold mb-6 text-white">
-                  VISION
-                </h1>
+                <div className="relative">
+                  <GooeyText
+                    texts={["VISION", "DESIGN", "IMPACT", "FUTURE"]}
+                    morphTime={2}
+                    cooldownTime={1.5}
+                    className="text-7xl md:text-9xl font-bold mb-6 text-white"
+                    textClassName="text-white"
+                  />
+                </div>
               </div>
             </div>
             <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-light tracking-wide">
@@ -38,17 +47,32 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
               <Button size="lg" className="text-lg bg-white text-black hover:bg-gray-100 group">
-                Start Project 
+                Start Project
                 <ArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="text-lg text-white border-white/20 hover:bg-white/10">
+              <Button size="lg" variant="outline" className="text-lg bg-black text-white border-white/20 hover:opacity-50">
                 Our Process
               </Button>
             </div>
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-          <div className="h-[100px] w-[1px] bg-gradient-to-b from-transparent via-white to-transparent animate-pulse" />
+          <Marquee className="bg-black/50 backdrop-blur-sm rounded-xl border border-white/10" pauseOnHover speed={40}>
+            <div className="flex gap-12 px-4 py-2">
+              {[
+                "Innovative Solutions",
+                "Modern Design",
+                "Cutting-edge Technology",
+                "Seamless Experience",
+                "Scalable Architecture",
+                "24/7 Support"
+              ].map((text, i) => (
+                <div key={i} className="text-white/70 text-sm font-medium px-4">
+                  {text}
+                </div>
+              ))}
+            </div>
+          </Marquee>
         </div>
       </section>
 
@@ -76,8 +100,8 @@ export default function Home() {
                 </h2>
               </div>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Since our inception, we've been redefining digital experiences through 
-                minimalist design and powerful functionality. Our approach merges 
+                Since our inception, we've been redefining digital experiences through
+                minimalist design and powerful functionality. Our approach merges
                 aesthetic simplicity with technical excellence.
               </p>
               <div className="grid grid-cols-2 gap-6">
@@ -101,13 +125,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section with Hover Effects */}
-      <section className="py-32 bg-black text-white relative" id="services">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#ffffff10,transparent)]" />
+      {/* Features Section with Highlighter Effect */}
+      <section className="py-24 bg-black">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <GooeyText
+              texts={["Why Choose Us", "Our Features", "What We Offer"]}
+              morphTime={3}
+              cooldownTime={2}
+              className="text-4xl md:text-5xl font-bold text-white"
+              textClassName="text-white"
+            />
+          </div>
+          <HighlightGroup className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Code2 className="w-8 h-8" />,
+                title: "Clean Code",
+                description: "We write maintainable, scalable, and efficient code that stands the test of time."
+              },
+              {
+                icon: <Layout className="w-8 h-8" />,
+                title: "Modern Design",
+                description: "Beautiful, responsive interfaces that engage users and enhance their experience."
+              },
+              {
+                icon: <Shield className="w-8 h-8" />,
+                title: "Secure Solutions",
+                description: "Built-in security measures to protect your data and your users."
+              },
+              {
+                icon: <Cloud className="w-8 h-8" />,
+                title: "Cloud Native",
+                description: "Leverage the power of cloud computing for scalable and reliable applications."
+              },
+              {
+                icon: <Database className="w-8 h-8" />,
+                title: "Data Driven",
+                description: "Make informed decisions with powerful analytics and insights."
+              },
+              {
+                icon: <Star className="w-8 h-8" />,
+                title: "Premium Support",
+                description: "24/7 support to ensure your business runs smoothly."
+              }
+            ].map((feature, i) => (
+              <Card key={i} className="group relative overflow-hidden bg-black/50 border border-white/10 hover:border-white/20 transition-colors">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.1)_0%,transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="p-8 relative">
+                  <div className="text-white mb-4">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-300">
+                    {feature.description}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </HighlightGroup>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-32 bg-white relative" id="services">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#00000010,transparent)]" />
         <div className="max-w-7xl mx-auto px-4 relative">
           <div className="text-center mb-20">
             <h2 className="text-5xl font-bold mb-4">Services</h2>
-            <div className="w-20 h-1 bg-white mx-auto" />
+            <div className="w-20 h-1 bg-black mx-auto" />
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -142,17 +230,17 @@ export default function Home() {
                 description: "Strategic insights for growth"
               }
             ].map((service, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
-                <div className="relative p-8 border border-white/10 hover:border-white/20 transition-all duration-500 h-full">
-                  <div className="absolute top-0 left-0 w-0 h-1 bg-white transition-all duration-500 group-hover:w-full" />
-                  <div className="absolute bottom-0 right-0 w-0 h-1 bg-white transition-all duration-500 group-hover:w-full" />
-                  <service.icon className="h-12 w-12 mb-6 text-white/80 group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent" />
+                <div className="relative p-8 border border-black/10 hover:border-black/20 transition-all duration-500 h-full">
+                  <div className="absolute top-0 left-0 w-0 h-1 bg-black transition-all duration-500 group-hover:w-full" />
+                  <div className="absolute bottom-0 right-0 w-0 h-1 bg-black transition-all duration-500 group-hover:w-full" />
+                  <service.icon className="h-12 w-12 mb-6 text-black/80 group-hover:scale-110 transition-transform duration-500" />
                   <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                  <p className="text-gray-400">{service.description}</p>
+                  <p className="text-gray-600">{service.description}</p>
                 </div>
               </div>
             ))}
@@ -160,15 +248,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing Section with Animated Cards */}
-      <section className="py-32 bg-white relative" id="pricing">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:2rem_2rem]" />
+      {/* Pricing Section */}
+      <section className="py-32 bg-black relative" id="pricing">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:2rem_2rem]" />
         <div className="max-w-7xl mx-auto px-4 relative">
           <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold mb-4">Pricing</h2>
-            <div className="w-20 h-1 bg-black mx-auto" />
+            <GooeyText
+              texts={["Pricing Plans", "Choose Your Plan", "Get Started"]}
+              morphTime={3}
+              cooldownTime={2}
+              className="text-5xl font-bold text-white mb-4"
+              textClassName="text-white"
+            />
+            <div className="w-20 h-1 bg-white mx-auto" />
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <HighlightGroup className="grid md:grid-cols-3 gap-8">
             {[
               {
                 name: "Essential",
@@ -213,35 +307,35 @@ export default function Home() {
                 ]
               }
             ].map((plan, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`group relative ${
                   plan.popular ? 'transform -translate-y-4' : ''
                 }`}
               >
                 <div className={`relative p-8 transition-all duration-500 ${
-                  plan.popular 
-                    ? 'bg-black text-white' 
-                    : 'bg-white border border-black/10 group-hover:border-black'
+                  plan.popular
+                    ? 'bg-white text-black'
+                    : 'bg-black/50 text-white border border-white/10 group-hover:border-white/20'
                 }`}>
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white text-black text-sm font-semibold py-1 px-4 rounded-full">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-black text-white text-sm font-semibold py-1 px-4 rounded-full">
                       MOST POPULAR
                     </div>
                   )}
                   <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                   <div className="mb-4">
                     <span className="text-5xl font-bold">{plan.price}</span>
-                    <span className="text-gray-500">/month</span>
+                    <span className={plan.popular ? 'text-gray-600' : 'text-gray-300'}>/month</span>
                   </div>
-                  <p className={`mb-8 ${plan.popular ? 'text-gray-300' : 'text-gray-500'}`}>
+                  <p className={`mb-8 ${plan.popular ? 'text-gray-600' : 'text-gray-300'}`}>
                     {plan.description}
                   </p>
-                  <Button 
+                  <Button
                     className={`w-full mb-8 ${
-                      plan.popular 
-                        ? 'bg-white text-black hover:bg-gray-100' 
-                        : 'bg-black text-white hover:bg-gray-900'
+                      plan.popular
+                        ? 'bg-black text-white hover:bg-gray-900'
+                        : 'bg-white text-black hover:bg-gray-100'
                     }`}
                   >
                     Get Started
@@ -250,9 +344,9 @@ export default function Home() {
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center">
                         <Check className={`h-5 w-5 mr-3 ${
-                          plan.popular ? 'text-white' : 'text-black'
+                          plan.popular ? 'text-black' : 'text-white'
                         }`} />
-                        <span className={plan.popular ? 'text-gray-300' : 'text-gray-600'}>
+                        <span className={plan.popular ? 'text-gray-600' : 'text-gray-300'}>
                           {feature}
                         </span>
                       </li>
@@ -261,53 +355,53 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
+          </HighlightGroup>
         </div>
       </section>
 
-      {/* Contact Section with Dynamic Elements */}
-      <section className="py-32 bg-black text-white relative" id="contact">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#ffffff10,transparent)]" />
+      {/* Contact Section */}
+      <section className="py-32 bg-white relative" id="contact">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#00000010,transparent)]" />
         <div className="max-w-7xl mx-auto px-4 relative">
           <div className="text-center mb-20">
             <h2 className="text-5xl font-bold mb-4">Contact</h2>
-            <div className="w-20 h-1 bg-white mx-auto" />
+            <div className="w-20 h-1 bg-black mx-auto" />
           </div>
           <div className="grid md:grid-cols-2 gap-16">
-            <div className="bg-white/5 backdrop-blur-lg p-8 border border-white/10">
+            <div className="bg-black/5 backdrop-blur-lg p-8 border border-black/10">
               <form className="space-y-6">
                 <div>
-                  <Label htmlFor="name" className="text-lg text-white">Name</Label>
-                  <Input 
-                    id="name" 
-                    className="mt-2 h-12 bg-white/5 border-white/10 text-white" 
+                  <Label htmlFor="name" className="text-lg">Name</Label>
+                  <Input
+                    id="name"
+                    className="mt-2 h-12 bg-white border-black/10"
                     placeholder="John Doe"
-                    required 
+                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email" className="text-lg text-white">Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    className="mt-2 h-12 bg-white/5 border-white/10 text-white" 
+                  <Label htmlFor="email" className="text-lg">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    className="mt-2 h-12 bg-white border-black/10"
                     placeholder="john@example.com"
-                    required 
+                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="message" className="text-lg text-white">Message</Label>
-                  <Textarea 
-                    id="message" 
-                    className="mt-2 bg-white/5 border-white/10 text-white" 
+                  <Label htmlFor="message" className="text-lg">Message</Label>
+                  <Textarea
+                    id="message"
+                    className="mt-2 bg-white border-black/10"
                     placeholder="Your message..."
                     rows={6}
-                    required 
+                    required
                   />
                 </div>
-                <Button 
-                  type="submit" 
-                  className="w-full h-12 text-lg bg-white text-black hover:bg-gray-100"
+                <Button
+                  type="submit"
+                  className="w-full h-12 text-lg bg-black text-white hover:bg-gray-900"
                 >
                   Send Message
                 </Button>
@@ -315,44 +409,47 @@ export default function Home() {
             </div>
 
             <div className="space-y-8">
-              {[
-                {
-                  icon: MapPin,
-                  title: "Location",
-                  details: ["123 Design Avenue", "Creative City, CC 12345"]
-                },
-                {
-                  icon: Phone,
-                  title: "Phone",
-                  details: ["+1 (555) 123-4567", "Mon-Fri, 9AM-6PM"]
-                },
-                {
-                  icon: Mail,
-                  title: "Email",
-                  details: ["hello@vision.com", "support@vision.com"]
-                }
-              ].map((item, index) => (
-                <div 
-                  key={index}
-                  className="group relative overflow-hidden"
-                >
-                  <div className="relative p-6 border border-white/10 hover:border-white/20 transition-all duration-500">
-                    <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
-                        <item.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-lg mb-2">{item.title}</p>
-                        {item.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-400">{detail}</p>
-                        ))}
+              <HighlightGroup className="space-y-8">
+                {[
+                  {
+                    icon: MapPin,
+                    title: "Location",
+                    details: ["123 Design Avenue", "Creative City, CC 12345"]
+                  },
+                  {
+                    icon: Phone,
+                    title: "Phone",
+                    details: ["+1 (555) 123-4567", "Mon-Fri, 9AM-6PM"]
+                  },
+                  {
+                    icon: Mail,
+                    title: "Email",
+                    details: ["hello@vision.com", "support@vision.com"]
+                  }
+                ].map((item, index) => (
+                  <Card
+                    key={index}
+                    className="group relative overflow-hidden bg-black/5 border border-black/10 hover:border-black/20"
+                  >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mouse-x)_var(--mouse-y),rgba(0,0,0,0.1)_0%,transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="p-3 bg-black/5 rounded-lg group-hover:bg-black/10 transition-colors">
+                          <item.icon className="h-6 w-6 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-lg mb-2">{item.title}</p>
+                          {item.details.map((detail, detailIndex) => (
+                            <p key={detailIndex} className="text-gray-600">{detail}</p>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </Card>
+                ))}
+              </HighlightGroup>
 
-              <div className="p-8 bg-white/5 backdrop-blur-lg border border-white/10">
+              <Card className="p-8 bg-black/5 border border-black/10">
                 <h3 className="text-2xl font-semibold mb-6">Business Hours</h3>
                 <div className="space-y-4">
                   {[
@@ -361,12 +458,12 @@ export default function Home() {
                     { day: "Sunday", hours: "Closed" }
                   ].map((schedule, index) => (
                     <div key={index} className="flex justify-between items-center">
-                      <span className="text-gray-400">{schedule.day}</span>
+                      <span className="text-gray-600">{schedule.day}</span>
                       <span className="font-semibold">{schedule.hours}</span>
                     </div>
                   ))}
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>
