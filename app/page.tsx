@@ -31,9 +31,17 @@ export default function Home() {
             <div className="inline-block">
               <div className="relative">
                 <div className="absolute inset-0 blur-3xl bg-white/20 rounded-full transform -rotate-6" />
-                <div className="relative">
+                <div className="relative flex flex-col items-center">
+                  {/* <div className="w-32 h-32 mb-8 relative opacity-50">
+                    <Image
+                      src="/logo.jpeg"
+                      alt="Intersphere Logo"
+                      fill
+                      className="object-contain rounded-xl "
+                    />
+                  </div> */}
                   <GooeyText
-                    texts={["VISION", "DESIGN", "IMPACT", "FUTURE"]}
+                    texts={["INTERSPHERE", "INNOVATION", "EXCELLENCE", "FUTURE"]}
                     morphTime={2}
                     cooldownTime={1.5}
                     className="text-7xl md:text-9xl font-bold mb-6 text-white"
@@ -123,7 +131,7 @@ export default function Home() {
                 </h2>
               </div>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Since our inception, we've been redefining digital experiences through
+                Since our inception, we&apos;ve been redefining digital experiences through
                 minimalist design and powerful functionality. Our approach merges
                 aesthetic simplicity with technical excellence.
               </p>
