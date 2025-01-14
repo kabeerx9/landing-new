@@ -14,6 +14,9 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      maskImage: {
+        'radial-gradient': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -78,10 +81,14 @@ const config: Config = {
             height: '0',
           },
         },
+        marquee: {
+          to: { transform: 'translateX(-50%)' }
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'marquee': 'marquee var(--duration, 30s) linear infinite'
       },
     },
   },
